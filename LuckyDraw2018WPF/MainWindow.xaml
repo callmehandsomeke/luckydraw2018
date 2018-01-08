@@ -1,0 +1,120 @@
+﻿<Window x:Class="LuckyDraw2018WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:local="clr-namespace:LuckyDraw2018WPF"
+        mc:Ignorable="d"
+        Title="ANZ Lucky Draw 2018" Height="768" Width="1024" MinHeight="768" MinWidth="1024" 
+        WindowStyle="None" KeyDown="Window_KeyDown" WindowState="Maximized" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            BorderThickness="1"
+                            Padding="2,2" 
+                            BorderBrush="Gold" 
+                            CornerRadius="3" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Name="grid1">
+        <Grid.Background>
+            <ImageBrush ImageSource="Images\bg.jpg" Stretch="UniformToFill"></ImageBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="95"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="65"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Source="Images\dog.png" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="2" x:Name="imgDog"/>
+        <Canvas Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="8" Grid.RowSpan="6" Opacity="0" x:Name="canvasShade" Background="Black"/>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" x:Name="lblTitle1" FontFamily="Snap ITC" FontSize="40" 
+               FontWeight="Bold" Foreground="Gold" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom">
+            <TextBlock><Run FontSize="80" Text="1"/><Run BaselineAlignment="TextTop" FontSize="55" Text="st"/><Run/><Run Text=" "/><Run Text="Prize"/></TextBlock>
+        </Label>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" x:Name="lblTitle2" FontFamily="Snap ITC" FontSize="40" 
+               FontWeight="Bold" Foreground="Gold" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom">
+            <TextBlock><Run FontSize="80" Text="2"/><Run BaselineAlignment="TextTop" FontSize="55" Text="nd"/><Run/><Run Text=" "/><Run Text="Prize"/></TextBlock>
+        </Label>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" x:Name="lblTitle3" FontFamily="Snap ITC" FontSize="40" 
+               FontWeight="Bold" Foreground="Gold" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom">
+            <TextBlock><Run FontSize="80" Text="3"/><Run BaselineAlignment="TextTop" FontSize="55" Text="rd"/><Run/><Run Text=" "/><Run Text="Prize"/></TextBlock>
+        </Label>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" x:Name="lblTitle4" FontFamily="Snap ITC" FontSize="40" 
+               FontWeight="Bold" Foreground="Gold" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom">
+            <TextBlock><Run FontSize="80" Text="4"/><Run BaselineAlignment="TextTop" FontSize="55" Text="th"/><Run/><Run Text=" "/><Run Text="Prize"/></TextBlock>
+        </Label>
+        <ComboBox x:Name="cmbNumbers" Grid.Column="0" Grid.Row="7" Width="40" Height="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" SelectionChanged="cmbNumbers_SelectionChanged">
+            <ComboBoxItem Content="1"/>
+            <ComboBoxItem Content="2"/>
+            <ComboBoxItem Content="3"/>
+            <ComboBoxItem Content="4"/>
+            <ComboBoxItem Content="5"/>
+            <ComboBoxItem Content="6"/>
+            <ComboBoxItem Content="7"/>
+            <ComboBoxItem Content="8"/>
+            <ComboBoxItem Content="9"/>
+            <ComboBoxItem Content="10"/>
+        </ComboBox>
+        <Button Grid.Column="0" Grid.ColumnSpan="8" Grid.Row="7" Width="200" x:Name="btnStart" Click="btnStart_Click" Focusable="False" Style="{StaticResource MyButtonStyle}">
+            <Button.Background>
+                <ImageBrush ImageSource="Images\start.png" Stretch="UniformToFill"/>
+            </Button.Background>
+        </Button>
+        <Label Grid.Column="0" Grid.Row="1" FontFamily="Snap ITC" FontSize="32" x:Name="lbl4LiteralTable"
+               Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+               HorizontalAlignment="Right" VerticalAlignment="Center" Content="Table:"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="1" VerticalAlignment="Center" x:Name="txt4TableFrom" Background="Transparent"
+                 FontFamily="Snap ITC" FontSize="20"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                 HorizontalAlignment="Left" Height="36" Width="45" MaxLength="2"
+               FontWeight="Bold" Foreground="DeepSkyBlue"/>
+        <Label Grid.Column="1" Grid.Row="1" FontFamily="Snap ITC" FontSize="28" x:Name="lbl4LiteralWave"
+               Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Width="30" Height="36" Content="~"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="10" VerticalAlignment="Center" x:Name="txt4TableTo" Background="Transparent"
+                 FontFamily="Snap ITC" FontSize="20"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                 HorizontalAlignment="Right" Height="36" Width="45" MaxLength="2"
+               FontWeight="Bold" Foreground="DeepSkyBlue"/>
+        <Label Grid.Column="0" Grid.Row="3" FontFamily="Snap ITC" FontSize="32" x:Name="lbl4LiteralSeat"
+               Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+               HorizontalAlignment="Right" VerticalAlignment="Center" Content="Seat:"/>
+        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" FontFamily="Snap ITC" FontSize="90" x:Name="lbl4Seat1"
+               Foreground="Gold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontWeight="Bold"
+               HorizontalAlignment="Right" VerticalAlignment="Center" Content="99"/>
+        <Label Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" FontFamily="Snap ITC" FontSize="90" x:Name="lbl4Seat2"
+               Foreground="Gold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontWeight="Bold"
+               HorizontalAlignment="Center" VerticalAlignment="Center" Content="99"/>
+        <Label Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2" FontFamily="Snap ITC" FontSize="90" x:Name="lbl4Seat3"
+               Foreground="Gold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontWeight="Bold"
+               HorizontalAlignment="Left" VerticalAlignment="Center" Content="99"/>
+        <Image gif:ImageBehavior.AnimatedSource="Images\fireworks.gif" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="imgFireworks1"/>
+        <Image gif:ImageBehavior.AnimatedSource="Images\fireworks.gif" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="imgFireworks2"/>
+        <Image gif:ImageBehavior.AnimatedSource="Images\fireworks.gif" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="imgFireworks3"/>
+        <Image gif:ImageBehavior.AnimatedSource="Images\fireworks.gif" Grid.Column="5" Grid.Row="5" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="imgFireworks4"/>
+    </Grid>
+</Window>

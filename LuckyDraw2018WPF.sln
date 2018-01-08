@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2008
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuckyDraw2018WPF", "LuckyDraw2018WPF\LuckyDraw2018WPF.csproj", "{6AF3A40A-99BB-4325-BA6C-78746D33AA63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuckyDraw2018Import", "LuckyDraw2018Import\LuckyDraw2018Import.csproj", "{DCF79267-1E4A-48D0-BC0B-FB5CBDAD6BDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AF3A40A-99BB-4325-BA6C-78746D33AA63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AF3A40A-99BB-4325-BA6C-78746D33AA63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AF3A40A-99BB-4325-BA6C-78746D33AA63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AF3A40A-99BB-4325-BA6C-78746D33AA63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCF79267-1E4A-48D0-BC0B-FB5CBDAD6BDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCF79267-1E4A-48D0-BC0B-FB5CBDAD6BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCF79267-1E4A-48D0-BC0B-FB5CBDAD6BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCF79267-1E4A-48D0-BC0B-FB5CBDAD6BDE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7495496E-0744-4320-85FC-71C4D12203C2}
+	EndGlobalSection
+EndGlobal
