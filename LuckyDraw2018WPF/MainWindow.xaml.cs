@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -50,6 +51,7 @@ namespace LuckyDraw2018WPF
         private const double NAME_FONT_SIZE_SMALL = 28;
         private DispatcherTimer _timerForDelay;
         private ILog _logger = LogManager.GetLogger("LuckyDraw2018");
+        MediaPlayer _mediaPlayer = new MediaPlayer();
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -91,6 +93,9 @@ namespace LuckyDraw2018WPF
                     Enable4thPrizeControls(true);
                     break;
             }
+            string bgmPath = Path.Combine(Directory.GetCurrentDirectory(), "Music", (int)_currentPrize + ".mp3");
+            _mediaPlayer.Open(new Uri(bgmPath));
+            _mediaPlayer.Play();
         }
 
         private void ChangeCmbNumbers(int selectedIndex)
@@ -142,9 +147,7 @@ namespace LuckyDraw2018WPF
 
                 lbl = CreateFixedLabel(1, 5, "Seat");
                 grid1.Children.Add(lbl);
-                // < Label Grid.Column = "0" Grid.Row = "1" FontFamily = "Snap ITC" FontSize = "32" Name = "lbl4LiteralTable"
-                //Foreground = "White" HorizontalContentAlignment = "Center" VerticalContentAlignment = "Center"
-                //HorizontalAlignment = "Right" VerticalAlignment = "Center" > Table:</ Label >
+
                 for (int i = 0; i < count; i++)
                 {
                     if (i % 2 == 0)
@@ -322,11 +325,18 @@ namespace LuckyDraw2018WPF
                 _timerForDelay = new DispatcherTimer();
                 _timerForDelay.Tick += _timerForDelay_Tick;
                 _timerForDelay.Interval = new TimeSpan(0, 0, int.Parse(ConfigurationManager.AppSettings["DelaySeconds"]));
+                _mediaPlayer.MediaEnded += _mediaPlayer_MediaEnded;
             }
             catch (Exception ex)
             {
                 _logger.Error(ex.Message);
             }
+        }
+
+        private void _mediaPlayer_MediaEnded(object sender, EventArgs e)
+        {
+            _mediaPlayer.Position = TimeSpan.Zero;
+            _mediaPlayer.Play();
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
