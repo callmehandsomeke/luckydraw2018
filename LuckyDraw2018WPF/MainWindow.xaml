@@ -38,6 +38,7 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="65"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -68,15 +69,19 @@
                FontWeight="Bold" Foreground="Gold" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom">
             <TextBlock><Run FontSize="80" Text="4"/><Run BaselineAlignment="TextTop" FontSize="55" Text="th"/><Run/><Run Text=" "/><Run Text="Prize"/></TextBlock>
         </Label>
-        <ComboBox x:Name="cmbNumbers" Grid.Column="0" Grid.Row="7" Width="40" Height="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" SelectionChanged="cmbNumbers_SelectionChanged">
+        <ComboBox x:Name="cmbNumbers" Grid.Column="0" Grid.Row="8" Width="45" Height="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" SelectionChanged="cmbNumbers_SelectionChanged">
             <ComboBoxItem Content="1"/>
             <ComboBoxItem Content="2"/>
             <ComboBoxItem Content="3"/>
             <ComboBoxItem Content="4"/>
             <ComboBoxItem Content="5"/>
             <ComboBoxItem Content="6"/>
+            <ComboBoxItem Content="7"/>
+            <ComboBoxItem Content="8"/>
+            <ComboBoxItem Content="9"/>
+            <ComboBoxItem Content="10"/>
         </ComboBox>
-        <Button Grid.Column="0" Grid.ColumnSpan="8" Grid.Row="7" Width="200" x:Name="btnStart" Click="btnStart_Click" Focusable="False" Style="{StaticResource MyButtonStyle}">
+        <Button Grid.Column="0" Grid.ColumnSpan="8" Grid.Row="8" Width="200" x:Name="btnStart" Click="btnStart_Click" Focusable="False" Style="{StaticResource MyButtonStyle}">
             <Button.Background>
                 <ImageBrush ImageSource="Images\start.png" Stretch="UniformToFill"/>
             </Button.Background>
@@ -110,17 +115,13 @@
                HorizontalAlignment="Left" VerticalAlignment="Center" Content="99"/>
         <Image gif:ImageBehavior.AnimatedSource="Images\fireworks.gif" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="imgFireworks1"/>
         <Image gif:ImageBehavior.AnimatedSource="Images\fireworks.gif" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="imgFireworks2"/>
-        <Image gif:ImageBehavior.AnimatedSource="Images\fireworks.gif" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="imgFireworks3"/>
-        <Image gif:ImageBehavior.AnimatedSource="Images\fireworks.gif" Grid.Column="5" Grid.Row="5" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="imgFireworks4"/>
-        <Image Grid.Row="5" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="4" Name="imgPrize" Margin="15"
-                   Stretch="Uniform">
-        </Image>
-        <Label Grid.Column="4" Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="4" 
-               FontFamily="Snap ITC" FontSize="32" x:Name="lblPrizeDescription"
-               Foreground="DeepSkyBlue" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" 
-               HorizontalAlignment="Left" VerticalAlignment="Center">
-            <TextBlock TextWrapping="WrapWithOverflow">
-            </TextBlock>
+        <Image gif:ImageBehavior.AnimatedSource="Images\fireworks.gif" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="imgFireworks3"/>
+        <Image gif:ImageBehavior.AnimatedSource="Images\fireworks.gif" Grid.Column="5" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="imgFireworks4"/>
+        <Label Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="8" 
+               FontFamily="Snap ITC" FontSize="20" x:Name="lblPrizeDescription"
+               Foreground="DeepSkyBlue" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+               HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Hyperlink Click="Hyperlink_Click"></Hyperlink>
         </Label>
 
     </Grid>

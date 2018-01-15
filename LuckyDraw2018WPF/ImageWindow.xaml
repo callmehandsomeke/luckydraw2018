@@ -1,0 +1,11 @@
+﻿<Window x:Class="LuckyDraw2018WPF.ImageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LuckyDraw2018WPF"
+        mc:Ignorable="d" Height="546" Width="546" MaxHeight="546" MaxWidth="546" MinHeight="546" MinWidth="546" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <Image Name="imgPrize" Stretch="Uniform"></Image>
+    </Grid>
+</Window>
