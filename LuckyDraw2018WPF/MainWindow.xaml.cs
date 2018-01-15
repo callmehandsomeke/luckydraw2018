@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Media;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,7 +36,7 @@ namespace LuckyDraw2018WPF
         private BusinessLogic _bll = new BusinessLogic();
         private bool _isStarted = false;
         private Roller _currentRoller;
-        private PrizeType _currentPrize;
+        private PrizeType _currentPrizeType;
         private List<ContentControl> _currentTableList = new List<ContentControl>();
         private List<ContentControl> _currentSeatList = new List<ContentControl>();
         private List<ContentControl> _currentNameList = new List<ContentControl>();
@@ -51,7 +50,8 @@ namespace LuckyDraw2018WPF
         private const double NAME_FONT_SIZE_SMALL = 28;
         private DispatcherTimer _timerForDelay;
         private ILog _logger = LogManager.GetLogger("LuckyDraw2018");
-        MediaPlayer _mediaPlayer = new MediaPlayer();
+        private MediaPlayer _mediaPlayer = new MediaPlayer();
+        private dynamic _currentPrize;
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -73,39 +73,60 @@ namespace LuckyDraw2018WPF
             switch (key)
             {
                 case Key.F1:
-                    _currentPrize = PrizeType.First;
-                    ChangeCmbNumbers(0);
+                    _currentPrizeType = PrizeType.First;
                     cmbNumbers.Visibility = Visibility.Hidden;
                     break;
                 case Key.F2:
                     cmbNumbers.Visibility = Visibility.Visible;
-                    _currentPrize = PrizeType.Second;
-                    ChangeCmbNumbers(4);
+                    _currentPrizeType = PrizeType.Second;
                     break;
                 case Key.F3:
                     cmbNumbers.Visibility = Visibility.Visible;
-                    _currentPrize = PrizeType.Third;
-                    ChangeCmbNumbers(9);
+                    _currentPrizeType = PrizeType.Third;
                     break;
                 case Key.F4:
                     cmbNumbers.Visibility = Visibility.Hidden;
-                    _currentPrize = PrizeType.Fourth;
+                    _currentPrizeType = PrizeType.Fourth;
                     Enable4thPrizeControls(true);
                     break;
             }
-            string bgmPath = Path.Combine(Directory.GetCurrentDirectory(), "Music", (int)_currentPrize + ".mp3");
+            _currentPrize = _bll.GetCurrentPrize(_currentPrizeType);
+            // 4th prize won't have redraw
+            if (_currentPrize == null && _currentPrizeType != PrizeType.Fourth)
+            {
+                _currentPrize = _bll.GetRedrawPrize(_currentPrizeType);
+            }
+            ChangeCmbNumbers((int)_currentPrize.count - 1);
+            string bgmPath = Path.Combine(Directory.GetCurrentDirectory(), "Music", (int)_currentPrizeType + ".mp3");
             _mediaPlayer.Open(new Uri(bgmPath));
             _mediaPlayer.Play();
+            if (string.IsNullOrEmpty((string)_currentPrize.imgSrc))
+            {
+                imgPrize.Source = null;
+            }
+            else
+            {
+                imgPrize.Source = _currentPrize.imgSrc;
+            }
+            (lblPrizeDescription.Content as TextBlock).Text = _currentPrize.desc;
         }
 
         private void ChangeCmbNumbers(int selectedIndex)
         {
+            if (_currentPrizeType == PrizeType.Fourth)
+            {
+                return;
+            }
             if (cmbNumbers.SelectedIndex == selectedIndex)
             {
                 cmbNumbers_SelectionChanged(cmbNumbers, null);
             }
             else
             {
+                if (selectedIndex >= cmbNumbers.Items.Count)
+                {
+                    cmbNumbers.SelectedIndex = cmbNumbers.Items.Count - 1;
+                }
                 cmbNumbers.SelectedIndex = selectedIndex;
             }
         }
@@ -198,7 +219,7 @@ namespace LuckyDraw2018WPF
             _currentNameList.Clear();
             grid1.Children.Clear();
             grid1.Children.Add(imgDog);
-            switch (_currentPrize)
+            switch (_currentPrizeType)
             {
                 case PrizeType.First:
                     grid1.Children.Add(lblTitle1);
@@ -218,6 +239,8 @@ namespace LuckyDraw2018WPF
             grid1.Children.Add(imgFireworks2);
             grid1.Children.Add(imgFireworks3);
             grid1.Children.Add(imgFireworks4);
+            grid1.Children.Add(imgPrize);
+            grid1.Children.Add(lblPrizeDescription);
             ShowFireworks(false);
             if (is4thPrize)
             {
@@ -296,14 +319,6 @@ namespace LuckyDraw2018WPF
             return lbl;
         }
 
-        enum PrizeType
-        {
-            First = 1,
-            Second = 2,
-            Third = 3,
-            Fourth = 4
-        }
-
         private void cmbNumbers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -321,7 +336,8 @@ namespace LuckyDraw2018WPF
             try
             {
                 _bll.LoadEmployeeData();
-                ChangePrize(Key.F1);
+                _bll.LoadPrizeData();
+                ChangePrize(Key.F4);
                 _timerForDelay = new DispatcherTimer();
                 _timerForDelay.Tick += _timerForDelay_Tick;
                 _timerForDelay.Interval = new TimeSpan(0, 0, int.Parse(ConfigurationManager.AppSettings["DelaySeconds"]));
@@ -345,13 +361,23 @@ namespace LuckyDraw2018WPF
             {
                 if (_isStarted)
                 {
-                    if (_currentPrize == PrizeType.Fourth)
+                    if (_currentPrizeType == PrizeType.Fourth)
                     {
                         _currentRoller.StopSeat();
                         string path = System.IO.Path.Combine(Directory.GetCurrentDirectory(), @"Images\start.png");
                         (btnStart.Background as ImageBrush).ImageSource = new BitmapImage(new Uri(path));
-                        _bll.AddWinners(txt4TableFrom.Text, txt4TableTo.Text, new[] { lbl4Seat1.Content.ToString(), lbl4Seat2.Content.ToString(), lbl4Seat3.Content.ToString() }.ToList());
+                        int count = _bll.AddWinners(txt4TableFrom.Text, txt4TableTo.Text
+                            , new[] { lbl4Seat1.Content.ToString(), lbl4Seat2.Content.ToString()
+                            , lbl4Seat3.Content.ToString() }.ToList()
+                            , Convert.ToInt32(_currentPrize.id));
                         _bll.SaveWinners();
+                        _currentPrize.drawnCount += count;
+                        var tables = _bll.GetAvailableTablesFor4thPrize();
+                        if (tables == null || tables.Count == 0)
+                        {
+                            _currentPrize.isDrawn = true;
+                        }
+                        _bll.SavePrizes();
                         _isStarted = false;
                         ShowFireworks(true);
                         _logger.Info($"Table from {txt4TableFrom.Text} to {txt4TableTo.Text} and seats {lbl4Seat1.Content},{lbl4Seat2.Content},{lbl4Seat3.Content} have been selected.");
@@ -366,11 +392,23 @@ namespace LuckyDraw2018WPF
                 else
                 {
                     ShowFireworks(false);
-                    string path = System.IO.Path.Combine(Directory.GetCurrentDirectory(), @"Images\stop.png");
-                    (btnStart.Background as ImageBrush).ImageSource = new BitmapImage(new Uri(path));
-                    if (_currentPrize == PrizeType.Fourth)
+                    if (_currentPrizeType == PrizeType.Fourth)
                     {
-                        _currentRoller = new Roller(grid1, null, _currentSeatList, _bll.GetSeatsForFourthPrize(), (int)_currentPrize);
+                        if (_currentPrize == null)
+                        {
+                            MessageBox.Show("All tables have been rolled already!"
+                                , "Tables rolled already", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        var tables = _bll.GetAvailableTablesFor4thPrize();
+                        if (!tables.Contains(Convert.ToInt32(txt4TableFrom.Text))
+                            || !tables.Contains(Convert.ToInt32(txt4TableTo.Text)))
+                        {
+                            MessageBox.Show("You selected some tables which have been rolled already!"
+                                , "Tables rolled already", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        _currentRoller = new Roller(grid1, null, _currentSeatList, _bll.GetSeatsForFourthPrize(), (int)_currentPrizeType);
                     }
                     else
                     {
@@ -378,11 +416,13 @@ namespace LuckyDraw2018WPF
                         {
                             (item.Content as TextBlock).Text = "";
                         }
-                        _currentRoller = new Roller(grid1, _currentTableList, _currentSeatList, _bll.GetAvailableEmployees(), (int)_currentPrize);
+                        _currentRoller = new Roller(grid1, _currentTableList, _currentSeatList, _bll.GetAvailableEmployees(), (int)_currentPrizeType);
                     }
+                    string path = System.IO.Path.Combine(Directory.GetCurrentDirectory(), @"Images\stop.png");
+                    (btnStart.Background as ImageBrush).ImageSource = new BitmapImage(new Uri(path));
                     _currentRoller.Start();
                     _isStarted = true;
-                    _logger.Info($"Lucky draw for {Enum.GetName(typeof(PrizeType), _currentPrize)} prize started.");
+                    _logger.Info($"Lucky draw for {Enum.GetName(typeof(PrizeType), _currentPrizeType)} prize started.");
                 }
             }
             catch (Exception ex)
@@ -417,8 +457,11 @@ namespace LuckyDraw2018WPF
                     sb.Append($"{table}-{seat},");
                     winners.Add((string)table + "_" + (string)seat);
                 }
-                _bll.AddWinners(winners, (int)_currentPrize);
+                int count = _bll.AddWinners(winners, (int)_currentPrizeType, Convert.ToInt32(_currentPrize.id));
                 _bll.SaveWinners();
+                _currentPrize.drawnCount += count;
+                _currentPrize.isDrawn = true;
+                _bll.SavePrizes();
                 ShowFireworks(true);
                 _logger.Info(sb.Remove(sb.Length - 1, 1).ToString());
             }
