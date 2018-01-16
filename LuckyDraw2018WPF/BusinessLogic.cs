@@ -67,7 +67,7 @@ namespace LuckyDraw2018WPF
             int start = int.Parse(startTable);
             int end = int.Parse(endTable);
             var winners = GetAvailableEmployees().Where(e => (int)e.table >= start && (int)e.table <= end && seats.Contains((string)e.seat))
-                .Select(w => new { lanid = w.lanid, name = w.name, prize = 4, prizeId = prizeId }).ToList<dynamic>();
+                .Select(w => new { table = w.table, seat = w.seat, lanid = w.lanid, name = w.name, prize = 4, prizeId = prizeId }).ToList<dynamic>();
             if (winners != null && winners.Count() > 0)
             {
                 if (_winners == null)
@@ -86,7 +86,7 @@ namespace LuckyDraw2018WPF
         public int AddWinners(IEnumerable<string> tabelUnderscoreSeats, int prize, int prizeId)
         {
             var winners = GetAvailableEmployees().Where(e => tabelUnderscoreSeats.Contains((string)e.table + "_" + (string)e.seat))
-                .Select(w => new { lanid = w.lanid, name = w.name, prize = prize, prizeId = prizeId }).ToList<dynamic>();
+                .Select(w => new { table = w.table, seat = w.seat, lanid = w.lanid, name = w.name, prize = prize, prizeId = prizeId }).ToList<dynamic>();
             if (winners != null && winners.Count() > 0)
             {
                 if (_winners == null)
@@ -104,14 +104,14 @@ namespace LuckyDraw2018WPF
 
         public List<int> GetAvailableTablesFor4thPrize()
         {
-            int max = _allEmployees.Select(e => e.seat).Max();
+            int max = _allEmployees.Select(e => (int)e.table).Max();
             if (_winners == null || _winners.Count == 0)
             {
                 return Enumerable.Range(1, max).ToList();
             }
             else
             {
-                int min = _winners.Where(w => w.prize == 4).Select(e => e.seat).Max() + 1;
+                int min = _winners.Where(w => w.prize == 4).Select(e => (int)e.table).Max() + 1;
                 if (min > max)
                 {
                     return null;

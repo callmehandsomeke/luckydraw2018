@@ -66,15 +66,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ImageWindow.xaml.cs">
-      <DependentUpon>ImageWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Roller.cs" />
     <Compile Include="SerializationHelper.cs" />
-    <Page Include="ImageWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,6 +103,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Data\prizes.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -118,29 +112,35 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\bg.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\fireworks.gif" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Images\brokenmachine.jpg" />
+    <Resource Include="Images\cleaner.jpg" />
     <Resource Include="Images\dog.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\start.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\stop.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Images\e-card.jpg" />
+    <Resource Include="Images\fan.jpg" />
+    <Resource Include="Images\fireworks.gif" />
+    <Resource Include="Images\gopro.jpg" />
+    <Resource Include="Images\humidifier.jpg" />
+    <Resource Include="Images\ipad.jpg" />
+    <Resource Include="Images\kindle.jpg" />
+    <Resource Include="Images\macbook.jpg" />
+    <Resource Include="Images\projector.jpg" />
     <Resource Include="Images\roller_big1.gif" />
     <Resource Include="Images\roller_big2.gif" />
     <Resource Include="Images\roller_big3.gif" />
     <Resource Include="Images\roller_small1.gif" />
     <Resource Include="Images\roller_small2.gif" />
     <Resource Include="Images\roller_small3.gif" />
+    <Resource Include="Images\sony.jpg" />
+    <Resource Include="Images\soundbox.jpg" />
+    <Resource Include="Images\start.png" />
+    <Resource Include="Images\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Music\1.mp3" />
+    <Content Include="Music\2.mp3" />
+    <Content Include="Music\3.mp3" />
+    <Content Include="Music\4.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

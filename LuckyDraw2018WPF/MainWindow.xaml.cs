@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -66,6 +65,7 @@ namespace LuckyDraw2018WPF
             catch (Exception ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
             }
         }
 
@@ -101,12 +101,18 @@ namespace LuckyDraw2018WPF
             string bgmPath = Path.Combine(Directory.GetCurrentDirectory(), "Music", (int)_currentPrizeType + ".mp3");
             _mediaPlayer.Open(new Uri(bgmPath));
             _mediaPlayer.Play();
-            var hyperlink = lblPrizeDescription.Content as Hyperlink;
-            hyperlink.Inlines.Clear();
-            if (!string.IsNullOrEmpty((string)_currentPrize.desc))
+            if (string.IsNullOrEmpty((string)_currentPrize.imgSrc))
             {
-                hyperlink.Inlines.Add((string)_currentPrize.desc);
+                imgPrize.Source = null;
+                tooltipImgPrize.Source = null;
             }
+            else
+            {
+                imgPrize.Source = _currentPrize.imgSrc;
+                tooltipImgPrize.Source = _currentPrize.imgSrc;
+            }
+            (lblPrizeDescription.Content as TextBlock).Text = _currentPrize.desc;
+            btnStart.IsEnabled = true;
         }
 
         private void ChangeCmbNumbers(int selectedIndex)
@@ -237,6 +243,7 @@ namespace LuckyDraw2018WPF
             grid1.Children.Add(imgFireworks2);
             grid1.Children.Add(imgFireworks3);
             grid1.Children.Add(imgFireworks4);
+            grid1.Children.Add(imgPrize);
             grid1.Children.Add(lblPrizeDescription);
             ShowFireworks(false);
             if (is4thPrize)
@@ -325,6 +332,7 @@ namespace LuckyDraw2018WPF
             catch (Exception ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
             }
         }
 
@@ -343,6 +351,7 @@ namespace LuckyDraw2018WPF
             catch (Exception ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
             }
         }
 
@@ -391,7 +400,7 @@ namespace LuckyDraw2018WPF
                     ShowFireworks(false);
                     if (_currentPrizeType == PrizeType.Fourth)
                     {
-                        if (_currentPrize == null)
+                        if (_currentPrize == null || _currentPrize.isDrawn == true)
                         {
                             MessageBox.Show("All tables have been rolled already!"
                                 , "Tables rolled already", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -401,7 +410,8 @@ namespace LuckyDraw2018WPF
                         if (!tables.Contains(Convert.ToInt32(txt4TableFrom.Text))
                             || !tables.Contains(Convert.ToInt32(txt4TableTo.Text)))
                         {
-                            MessageBox.Show("You selected some tables which have been rolled already!"
+                            MessageBox.Show("You selected some tables which have been rolled already!" + Environment.NewLine
+                                + $"Plese select tables from {tables.First()} to {tables.Last()}"
                                 , "Tables rolled already", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
@@ -425,6 +435,7 @@ namespace LuckyDraw2018WPF
             catch (Exception ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 MessageBox.Show("Something was going wrong...");
             }
         }
@@ -461,24 +472,13 @@ namespace LuckyDraw2018WPF
                 _bll.SavePrizes();
                 ShowFireworks(true);
                 _logger.Info(sb.Remove(sb.Length - 1, 1).ToString());
+                btnStart.IsEnabled = false;
             }
             catch (Exception ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
             }
-        }
-
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            // not valid for redraw
-            if (_currentPrize == null || _currentPrize.id == 99)
-            {
-                return;
-            }
-            var run = (sender as Hyperlink).Inlines.FirstOrDefault() as Run;
-            string title = run == null ? string.Empty : run.Text;
-            ImageWindow imgWindow = new ImageWindow(title, (string)_currentPrize.imgSrc);
-            imgWindow.ShowDialog();
         }
     }
 }
