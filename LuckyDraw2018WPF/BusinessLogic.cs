@@ -138,7 +138,7 @@ namespace LuckyDraw2018WPF
                 id = 99,
                 prize = (int)prizeType,
                 imgSrc = "",
-                desc = "",
+                desc = $"Redraw for {Enum.GetName(typeof(PrizeType), prizeType)} Prize",
                 count = 1,
                 drawnCount = 0
             };

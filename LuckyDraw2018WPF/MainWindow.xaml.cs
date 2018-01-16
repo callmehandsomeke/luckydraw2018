@@ -71,36 +71,42 @@ namespace LuckyDraw2018WPF
 
         private void ChangePrize(Key key)
         {
+            var lastPrizeType = _currentPrizeType;
             switch (key)
             {
                 case Key.F1:
                     _currentPrizeType = PrizeType.First;
-                    cmbNumbers.Visibility = Visibility.Hidden;
                     break;
                 case Key.F2:
-                    cmbNumbers.Visibility = Visibility.Visible;
                     _currentPrizeType = PrizeType.Second;
                     break;
                 case Key.F3:
-                    cmbNumbers.Visibility = Visibility.Visible;
                     _currentPrizeType = PrizeType.Third;
                     break;
                 case Key.F4:
-                    cmbNumbers.Visibility = Visibility.Hidden;
                     _currentPrizeType = PrizeType.Fourth;
                     Enable4thPrizeControls(true);
                     break;
             }
+            cmbNumbers.Visibility = Visibility.Hidden;
             _currentPrize = _bll.GetCurrentPrize(_currentPrizeType);
             // 4th prize won't have redraw
             if (_currentPrize == null && _currentPrizeType != PrizeType.Fourth)
             {
                 _currentPrize = _bll.GetRedrawPrize(_currentPrizeType);
+                if(_currentPrizeType != PrizeType.First)
+                {
+                    cmbNumbers.Visibility = Visibility.Visible;
+                }
             }
-            ChangeCmbNumbers((int)_currentPrize.count - 1);
-            string bgmPath = Path.Combine(Directory.GetCurrentDirectory(), "Music", (int)_currentPrizeType + ".mp3");
-            _mediaPlayer.Open(new Uri(bgmPath));
-            _mediaPlayer.Play();
+            ChangeCmbNumbers((int)_currentPrize.count - (int)_currentPrize.drawnCount - 1);
+            // only if the prize changes, the music changes
+            if (lastPrizeType != _currentPrizeType)
+            {
+                string bgmPath = Path.Combine(Directory.GetCurrentDirectory(), "Music", (int)_currentPrizeType + ".mp3");
+                _mediaPlayer.Open(new Uri(bgmPath));
+                _mediaPlayer.Play();
+            }
             if (string.IsNullOrEmpty((string)_currentPrize.imgSrc))
             {
                 imgPrize.Source = null;
@@ -239,10 +245,6 @@ namespace LuckyDraw2018WPF
                     break;
             }
             grid1.Children.Add(btnStart);
-            grid1.Children.Add(imgFireworks1);
-            grid1.Children.Add(imgFireworks2);
-            grid1.Children.Add(imgFireworks3);
-            grid1.Children.Add(imgFireworks4);
             grid1.Children.Add(imgPrize);
             grid1.Children.Add(lblPrizeDescription);
             ShowFireworks(false);
@@ -264,6 +266,10 @@ namespace LuckyDraw2018WPF
             {
                 grid1.Children.Add(cmbNumbers);
             }
+            grid1.Children.Add(imgFireworks1);
+            grid1.Children.Add(imgFireworks2);
+            grid1.Children.Add(imgFireworks3);
+            grid1.Children.Add(imgFireworks4);
         }
 
         private void ShowFireworks(bool show)
@@ -436,7 +442,7 @@ namespace LuckyDraw2018WPF
             {
                 _logger.Error(ex.Message);
                 _logger.Error(ex.StackTrace);
-                MessageBox.Show("Something was going wrong...");
+                MessageBox.Show("Sorry, something went wrong...", "System Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -468,7 +474,10 @@ namespace LuckyDraw2018WPF
                 int count = _bll.AddWinners(winners, (int)_currentPrizeType, Convert.ToInt32(_currentPrize.id));
                 _bll.SaveWinners();
                 _currentPrize.drawnCount += count;
-                _currentPrize.isDrawn = true;
+                if (_currentPrize.drawnCount == _currentPrize.count)
+                {
+                    _currentPrize.isDrawn = true;
+                }
                 _bll.SavePrizes();
                 ShowFireworks(true);
                 _logger.Info(sb.Remove(sb.Length - 1, 1).ToString());
