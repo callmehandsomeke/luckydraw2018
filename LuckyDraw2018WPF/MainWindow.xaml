@@ -112,18 +112,19 @@
         <Image gif:ImageBehavior.AnimatedSource="Images\fireworks.gif" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="imgFireworks2"/>
         <Image gif:ImageBehavior.AnimatedSource="Images\fireworks.gif" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="imgFireworks3"/>
         <Image gif:ImageBehavior.AnimatedSource="Images\fireworks.gif" Grid.Column="5" Grid.Row="5" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="imgFireworks4"/>
-        <Image Grid.Row="5" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="4" Name="imgPrize" Margin="15" Stretch="Uniform">
+        <Image Grid.Row="5" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" 
+               Name="imgPrize" Margin="15" Stretch="Uniform" HorizontalAlignment="Right">
             <Image.ToolTip>
                 <StackPanel>
                     <Image Name="tooltipImgPrize"></Image>
                 </StackPanel>
             </Image.ToolTip>
         </Image>
-        <Label Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="4" Grid.RowSpan="2"
-               FontFamily="Snap ITC" FontSize="32" x:Name="lblPrizeDescription"
-               Foreground="DeepSkyBlue" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" 
+        <Label Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="5" Grid.RowSpan="2"
+               FontFamily="Verdana" FontSize="32" x:Name="lblPrizeDescription"
+               Foreground="Gold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" 
                HorizontalAlignment="Left" VerticalAlignment="Center">
-            <TextBlock TextWrapping="WrapWithOverflow"></TextBlock>
+            <TextBlock TextWrapping="WrapWithOverflow">Max Air</TextBlock>
         </Label>
 
     </Grid>
