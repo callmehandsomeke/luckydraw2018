@@ -48,9 +48,9 @@ namespace LuckyDraw2018Import
             }
             if (cell.CellType == CellType.Numeric)
             {
-                return Convert.ToString(cell.NumericCellValue);
+                return Convert.ToString(cell.NumericCellValue).Trim();
             }
-            return cell.StringCellValue;
+            return cell.StringCellValue.Trim();
         }
 
         public static void WriteDataToExcel(string path, IEnumerable<dynamic> list)
