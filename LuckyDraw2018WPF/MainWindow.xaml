@@ -68,6 +68,10 @@
                FontWeight="Bold" Foreground="Gold" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom">
             <TextBlock><Run FontSize="80" Text="4"/><Run BaselineAlignment="TextTop" FontSize="55" Text="th"/><Run/><Run Text=" "/><Run Text="Prize"/></TextBlock>
         </Label>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" x:Name="lblTitle5" FontFamily="Snap ITC" FontSize="40" 
+               FontWeight="Bold" Foreground="Gold" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom">
+            <TextBlock><Run FontSize="80" Text="Special"/><Run Text=" "/><Run Text="Prize"/></TextBlock>
+        </Label>
         <ComboBox x:Name="cmbNumbers" Grid.Column="0" Grid.Row="7" Width="45" Height="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" SelectionChanged="cmbNumbers_SelectionChanged">
             <ComboBoxItem Content="1"/>
             <ComboBoxItem Content="2"/>

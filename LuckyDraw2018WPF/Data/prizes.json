@@ -115,5 +115,14 @@
         "count": 1,
         "drawnCount": 0,
         "isDrawn": false
+    },
+	{
+        "id": 51,
+        "prize": 5,
+        "imgSrc": "Images/macbook.jpg",
+        "desc": "Special prize sponsored by Mr.Zhou",
+        "count": 4,
+        "drawnCount": 0,
+        "isDrawn": false
     }
 ]

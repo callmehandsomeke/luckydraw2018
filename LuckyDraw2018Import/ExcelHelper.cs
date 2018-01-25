@@ -23,18 +23,15 @@ namespace LuckyDraw2018Import
                 wb = new HSSFWorkbook(file);
                 var sheet = wb.GetSheetAt(0);
                 int rowCount = sheet.LastRowNum;
-                for (int i = 0; i <= rowCount; i++)
+                int i = 0;
+                if (hasHeader)
                 {
-                    if (hasHeader)
-                    {
-                        continue;
-                    }
+                    i++;
+                }
+                for (; i <= rowCount; i++)
+                {
                     var row = sheet.GetRow(i);
-                    if (row.Cells[0] == null || string.IsNullOrWhiteSpace(GetCellValue(row.Cells[0])))
-                    {
-                        break;
-                    }
-                    list.Add(new { table = GetCellValue(row.Cells[0]), seat = GetCellValue(row.Cells[1]), lanid = GetCellValue(row.Cells[2]), name = GetCellValue(row.Cells[3]) });
+                    list.Add(new { table = GetCellValue(row.Cells[0]), seat = GetCellValue(row.Cells[1]), lanid = GetCellValue(row.Cells[2]).ToLower(), name = GetCellValue(row.Cells[3]) });
                 }
             }
             return list;

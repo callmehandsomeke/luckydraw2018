@@ -57,7 +57,7 @@ namespace LuckyDraw2018WPF
         {
             try
             {
-                if (e.Key == Key.F1 || e.Key == Key.F2 || e.Key == Key.F3 || e.Key == Key.F4)
+                if (e.Key == Key.F1 || e.Key == Key.F2 || e.Key == Key.F3 || e.Key == Key.F4 || e.Key == Key.F5)
                 {
                     ChangePrize(e.Key);
                 }
@@ -87,6 +87,9 @@ namespace LuckyDraw2018WPF
                     _currentPrizeType = PrizeType.Fourth;
                     Enable4thPrizeControls(true);
                     break;
+                case Key.F5:
+                    _currentPrizeType = PrizeType.Special;
+                    break;
             }
             cmbNumbers.Visibility = Visibility.Hidden;
             _currentPrize = _bll.GetCurrentPrize(_currentPrizeType);
@@ -104,8 +107,15 @@ namespace LuckyDraw2018WPF
             if (lastPrizeType != _currentPrizeType)
             {
                 string bgmPath = Path.Combine(Directory.GetCurrentDirectory(), "Music", (int)_currentPrizeType + ".mp3");
-                _mediaPlayer.Open(new Uri(bgmPath));
-                _mediaPlayer.Play();
+                if (File.Exists(bgmPath))
+                {
+                    _mediaPlayer.Open(new Uri(bgmPath));
+                    _mediaPlayer.Play();
+                }
+                else
+                {
+                    _mediaPlayer.Stop();
+                }
             }
             if (string.IsNullOrEmpty((string)_currentPrize.imgSrc))
             {
@@ -242,6 +252,9 @@ namespace LuckyDraw2018WPF
                     break;
                 case PrizeType.Fourth:
                     grid1.Children.Add(lblTitle4);
+                    break;
+                case PrizeType.Special:
+                    grid1.Children.Add(lblTitle5);
                     break;
             }
             grid1.Children.Add(btnStart);

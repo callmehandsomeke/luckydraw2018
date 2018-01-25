@@ -12,7 +12,8 @@ namespace LuckyDraw2018Import
         {
             //test
             //args = new[] { "m", @"C:\zhangke\Projects\LuckyDraw2018WPF\LuckyDraw2018Import\bin\Debug\employees.xls" };
-            //args = new[] { @"C:\zhangke\Projects\LuckyDraw2018WPF\LuckyDraw2018Import\bin\Debug\employees.xls", @"C:\zhangke\Projects\LuckyDraw2018WPF\LuckyDraw2018WPF\bin\Debug\Data\allEmployees.json" };
+            //args = new[] { @"C:\Annual Dinner\Lucky Draw\sourcecode\annual dinner name list.XLS"
+            //    , @"C:\Annual Dinner\Lucky Draw\sourcecode\LuckyDraw2018WPF\LuckyDraw2018WPF\Data\allEmployees.json" };
             if (args != null && args.Length == 2 && args[0] == "m")
             {
                 ExcelHelper.WriteDataToExcel(args[1], ADHelper.GetAllUsersInGroup("China-ChengduHubAllStaff"));
@@ -24,7 +25,9 @@ namespace LuckyDraw2018Import
                     Console.WriteLine("Please input parameters: [ExcelFullPath] [JsonFullPath]");
                     return;
                 }
-                File.WriteAllText(args[1], SerializationHelper.SerializeJson(ExcelHelper.ReadFromExcel(args[0], true)));
+                var list = ExcelHelper.ReadFromExcel(args[0], true);
+                list = list.Where(l => !string.IsNullOrWhiteSpace((string)l.table) && !string.IsNullOrWhiteSpace((string)l.seat));
+                File.WriteAllText(args[1], SerializationHelper.SerializeJson(list));
             }
         }
     }
