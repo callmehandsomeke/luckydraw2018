@@ -3447,61 +3447,61 @@
         "table": "61",
         "seat": "5",
         "lanid": "huangw8",
-        "name": "HUANG, LIANG"
+        "name": "HUANG,LIANG"
     },
     {
         "table": "61",
         "seat": "6",
         "lanid": "wangm23",
-        "name": "WANG, MENG"
+        "name": "WANG,MENG"
     },
     {
         "table": "61",
         "seat": "7",
         "lanid": "tanx8",
-        "name": "TAN, XINWEI"
+        "name": "TAN,XINWEI"
     },
     {
         "table": "61",
         "seat": "8",
         "lanid": "zhoul7",
-        "name": "ZHOU, LINGLI"
+        "name": "ZHOU,LINGLI"
     },
     {
         "table": "61",
         "seat": "9",
         "lanid": "wangbei",
-        "name": "WANG, BEI"
+        "name": "WANG,BEI"
     },
     {
         "table": "61",
         "seat": "10",
         "lanid": "lij21",
-        "name": "LI, ZHENZHEN"
+        "name": "LI,ZHENZHEN"
     },
     {
         "table": "62",
         "seat": "1",
         "lanid": "lvx",
-        "name": "LV, XINYI"
+        "name": "LV,XINYI"
     },
     {
         "table": "62",
         "seat": "2",
         "lanid": "chenv24",
-        "name": "CHEN, RAN"
+        "name": "CHEN,RAN"
     },
     {
         "table": "62",
         "seat": "3",
         "lanid": "wanc2",
-        "name": "WAN, NIANLAN"
+        "name": "WAN,NIANLAN"
     },
     {
         "table": "62",
         "seat": "4",
         "lanid": "huj3",
-        "name": "HU, JIAXIU"
+        "name": "HU,JIAXIU"
     },
     {
         "table": "62",
@@ -3536,8 +3536,8 @@
     {
         "table": "62",
         "seat": "10",
-        "lanid": "lium9",
-        "name": "Liu Mark"
+        "lanid": "wangc5",
+        "name": "Wang, Celine"
     },
     {
         "table": "63",
@@ -3608,8 +3608,8 @@
     {
         "table": "64",
         "seat": "2",
-        "lanid": "yaunl5",
-        "name": "Yuan, Lily"
+        "lanid": "goum1",
+        "name": "Gou, Miguel"
     },
     {
         "table": "64",
@@ -3620,14 +3620,14 @@
     {
         "table": "64",
         "seat": "4",
-        "lanid": "goum1",
-        "name": "Gou, Miguel"
+        "lanid": "yaunl5",
+        "name": "Yuan, Lily"
     },
     {
         "table": "64",
         "seat": "5",
-        "lanid": "wangc5",
-        "name": "Wang, Celine"
+        "lanid": "lium9",
+        "name": "Liu Mark"
     },
     {
         "table": "64",
@@ -3638,26 +3638,14 @@
     {
         "table": "64",
         "seat": "7",
-        "lanid": "lili",
-        "name": "Li, Ling Feng"
+        "lanid": "daid3",
+        "name": "Dai, Darren"
     },
     {
         "table": "64",
         "seat": "8",
         "lanid": "xionga1",
         "name": "Xiong, Anna"
-    },
-    {
-        "table": "64",
-        "seat": "9",
-        "lanid": "liul14",
-        "name": "Liu, Evelyn"
-    },
-    {
-        "table": "64",
-        "seat": "10",
-        "lanid": "daid3",
-        "name": "Dai, Darren"
     },
     {
         "table": "65",

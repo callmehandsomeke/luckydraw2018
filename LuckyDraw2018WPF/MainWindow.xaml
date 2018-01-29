@@ -96,7 +96,7 @@
                Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                HorizontalAlignment="Center" VerticalAlignment="Center"
                Width="30" Height="36" Content="~"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Text="10" VerticalAlignment="Center" x:Name="txt4TableTo" Background="Transparent"
+        <TextBox Grid.Column="1" Grid.Row="1" Text="20" VerticalAlignment="Center" x:Name="txt4TableTo" Background="Transparent"
                  FontFamily="Snap ITC" FontSize="20"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                  HorizontalAlignment="Right" Height="36" Width="45" MaxLength="2"
                FontWeight="Bold" Foreground="DeepSkyBlue"/>

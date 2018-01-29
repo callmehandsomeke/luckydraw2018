@@ -11,6 +11,33 @@
     {
         "id": 31,
         "prize": 3,
+        "imgSrc": "Images/e-card.jpg",
+        "desc": "JingDong E-card 600RMB (300RMB * 2)",
+        "count": 5,
+        "drawnCount": 0,
+        "isDrawn": false
+    },
+	{
+        "id": 32,
+        "prize": 3,
+        "imgSrc": "Images/e-card.jpg",
+        "desc": "JingDong E-card 600RMB (300RMB * 2)",
+        "count": 5,
+        "drawnCount": 0,
+        "isDrawn": false
+    },
+	{
+        "id": 33,
+        "prize": 3,
+        "imgSrc": "Images/e-card.jpg",
+        "desc": "JingDong E-card 600RMB (300RMB * 2)",
+        "count": 6,
+        "drawnCount": 0,
+        "isDrawn": false
+    },
+	{
+        "id": 34,
+        "prize": 3,
         "imgSrc": "Images/humidifier.jpg",
         "desc": "Philips Air humidifier HU4901/00 Safe & clean NanoCloud technology",
         "count": 5,
@@ -18,7 +45,7 @@
         "isDrawn": false
     },
     {
-        "id": 32,
+        "id": 35,
         "prize": 3,
         "imgSrc": "Images/brokenmachine.jpg",
         "desc": "Midea Wall Broken Machine WBL80Y21",
@@ -27,7 +54,7 @@
         "isDrawn": false
     },
     {
-        "id": 33,
+        "id": 36,
         "prize": 3,
         "imgSrc": "Images/kindle.jpg",
         "desc": "Kindle X Migu E-reader",
@@ -36,7 +63,7 @@
         "isDrawn": false
     },
     {
-        "id": 34,
+        "id": 37,
         "prize": 3,
         "imgSrc": "Images/soundbox.jpg",
         "desc": "Microlab Bluetooth Sound Box T5 / Newmine Bluetooth Sound Box K1",
@@ -44,21 +71,12 @@
         "drawnCount": 0,
         "isDrawn": false
     },
-    {
-        "id": 35,
+	{
+        "id": 38,
         "prize": 3,
         "imgSrc": "Images/fan.jpg",
         "desc": "Midea electric silent fan FZ10-16BRW",
         "count": 6,
-        "drawnCount": 0,
-        "isDrawn": false
-    },
-    {
-        "id": 36,
-        "prize": 3,
-        "imgSrc": "Images/e-card.jpg",
-        "desc": "JingDong E-card 600RMB (300RMB * 2)",
-        "count": 12,
         "drawnCount": 0,
         "isDrawn": false
     },
@@ -117,11 +135,29 @@
         "isDrawn": false
     },
 	{
+        "id": 12,
+        "prize": 1,
+        "imgSrc": "Images/macbook.jpg",
+        "desc": "Apple MacBook Air 13.3-inch (i5/8G/128G)",
+        "count": 1,
+        "drawnCount": 0,
+        "isDrawn": false
+    },
+	{
         "id": 51,
         "prize": 5,
-        "imgSrc": "Images/macbook.jpg",
-        "desc": "Special prize sponsored by Mr.Zhou",
+        "imgSrc": "Images/suitlook.jpg",
+        "desc": "SUITLOOK customize shirt coupon value 1600RMB - sponsored by Davis",
         "count": 4,
+        "drawnCount": 0,
+        "isDrawn": false
+    },
+	{
+        "id": 52,
+        "prize": 5,
+        "imgSrc": "Images/buffet.jpg",
+        "desc": "Hilton Buffet Dinner in MIX Restaurant for two person",
+        "count": 2,
         "drawnCount": 0,
         "isDrawn": false
     }
