@@ -1783,12 +1783,6 @@
     },
     {
         "table": "32",
-        "seat": "9",
-        "lanid": "list",
-        "name": "Steven Li"
-    },
-    {
-        "table": "32",
         "seat": "10",
         "lanid": "xuv2",
         "name": "Victor Xu"
@@ -2659,12 +2653,6 @@
     },
     {
         "table": "48",
-        "seat": "3",
-        "lanid": "xum3",
-        "name": "Xu, Mika"
-    },
-    {
-        "table": "48",
         "seat": "4",
         "lanid": "liuc15",
         "name": "Cecilia Liu"
@@ -3005,6 +2993,12 @@
         "lanid": "liul12",
         "name": "Leo Liu"
     },
+	{
+        "table": "54",
+        "seat": "1",
+        "lanid": "xiany2",
+        "name": "Eddy Xian"
+    },
     {
         "table": "54",
         "seat": "2",
@@ -3088,12 +3082,6 @@
         "seat": "5",
         "lanid": "wangi5",
         "name": "Iris Wang"
-    },
-    {
-        "table": "55",
-        "seat": "6",
-        "lanid": "lij18",
-        "name": "June Li"
     },
     {
         "table": "55",
@@ -3550,12 +3538,6 @@
         "seat": "2",
         "lanid": "wangx2",
         "name": "Wang Xiaoli"
-    },
-    {
-        "table": "63",
-        "seat": "3",
-        "lanid": "yur7",
-        "name": "Yu Rong"
     },
     {
         "table": "63",
