@@ -21,7 +21,7 @@
         "id": 32,
         "prize": 3,
         "imgSrc": "Images/humidifier.jpg",
-        "desc": "Philips Air humidifier HU4901/00 Safe & clean NanoCloud technology",
+        "desc": "Philips Air Humidifier HU4901/00 Safe & clean NanoCloud technology",
         "count": 5,
         "drawnCount": 0,
         "isDrawn": false
@@ -66,7 +66,7 @@
         "id": 37,
         "prize": 3,
         "imgSrc": "Images/fan.jpg",
-        "desc": "Midea electric silent fan FZ10-16BRW",
+        "desc": "Midea Electric Silent Fan FZ10-16BRW",
         "count": 6,
         "drawnCount": 0,
         "isDrawn": false
@@ -84,7 +84,7 @@
         "id": 21,
         "prize": 2,
         "imgSrc": "Images/ipad.jpg",
-        "desc": "Apple iPad mini 4 (7.9-inch/128G WLAN/A8/Retina/Touch ID)",
+        "desc": "Apple iPad Mini 4",
         "count": 2,
         "drawnCount": 0,
         "isDrawn": false
@@ -93,7 +93,7 @@
         "id": 22,
         "prize": 2,
         "imgSrc": "Images/projector.jpg",
-        "desc": "XGIMI New Z4x Projectot",
+        "desc": "XGIMI New Z4x Projector",
         "count": 2,
         "drawnCount": 0,
         "isDrawn": false
@@ -120,7 +120,7 @@
         "id": 25,
         "prize": 2,
         "imgSrc": "Images/sony.jpg",
-        "desc": "Sony ILCE5100L Mirrorless Camera with 16-50mm Retractable Lens",
+        "desc": "Sony ILCE5100L Mirrorless Camera",
         "count": 2,
         "drawnCount": 0,
         "isDrawn": false
@@ -129,7 +129,7 @@
         "id": 11,
         "prize": 1,
         "imgSrc": "Images/macbook.jpg",
-        "desc": "Apple MacBook Air 13.3-inch (i5/8G/128G)",
+        "desc": "Apple MacBook Air",
         "count": 1,
         "drawnCount": 0,
         "isDrawn": false
@@ -138,7 +138,7 @@
         "id": 12,
         "prize": 1,
         "imgSrc": "Images/macbook.jpg",
-        "desc": "Apple MacBook Air 13.3-inch (i5/8G/128G)",
+        "desc": "Apple MacBook Air",
         "count": 1,
         "drawnCount": 0,
         "isDrawn": false
@@ -147,7 +147,7 @@
         "id": 51,
         "prize": 5,
         "imgSrc": "Images/buffet.jpg",
-        "desc": "Hilton Buffet Dinner in MIX Restaurant for two person",
+        "desc": "Hilton Buffet Dinner in MIX Restaurant for 2",
         "count": 2,
         "drawnCount": 0,
         "isDrawn": false
@@ -156,7 +156,7 @@
         "id": 52,
         "prize": 5,
         "imgSrc": "Images/suitlook.jpg",
-        "desc": "SUITLOOK customize shirt coupon value 1600RMB - sponsored by Davis",
+        "desc": "SUITLOOK customise shirt coupon value 1600RMB - Sponsored by Davis",
         "count": 4,
         "drawnCount": 0,
         "isDrawn": false
